@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WikiClase.Data;
 using WikiClase.Models;
@@ -27,6 +28,7 @@ namespace WikiClase.Pages.Posts
             {
                 Post = await _context.Posts.ToListAsync();
             }
+            ViewData["Etiquetas"] = new SelectList(_context.Tags, "Id", "Name");
         }
     }
 }
