@@ -11,7 +11,7 @@
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+@*    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Post[0].IdUser)
@@ -33,11 +33,11 @@
             </th>
             <th></th>
         </tr>
-    </thead>
+    </thead>*@
     <tbody>
 @foreach (var item in Model.Post) {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IdUser)
             </td>
             <td>
@@ -57,10 +57,32 @@
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> | 
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+            <td>
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Text)</p>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">>@Html.DisplayFor(modelItem => item.IdCategory)</h6>
+                            <a href="#" class="card-link" asp-for="Post.Tag" asp-items="@ViewBag.Etiquetas">#@Html.DisplayFor(modelItem => item.IdTags)</a>
+                        </div>
+                        <div class="card-footer"><a asp-page="./Edit" asp-route-id="@item.Id">Editar</a></div>
+                        <div class="card-footer"><a asp-page="./Details" asp-route-id="@item.Id">Detalles</a></div>
+                        <div class="card-footer"><a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a></div>
+                        
+                        @*<div class="form-group">
+                            <label asp-for="Post.IdTags" class="control-label"></label>
+                            <select asp-for="Post.IdTags" class="form-control" asp-items="@ViewBag.Etiquetas"></select>
+                            <span asp-validation-for="Post.IdTags" class="text-danger"></span>
+                        </div>*@
+                    </div>
             </td>
         </tr>
-}
+}       
     </tbody>
 </table>
